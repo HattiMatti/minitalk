@@ -6,8 +6,18 @@
 /*   By: msiitone <msiitone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 17:04:48 by msiitone          #+#    #+#             */
-/*   Updated: 2024/05/07 17:04:53 by msiitone         ###   ########.fr       */
+/*   Updated: 2024/05/09 18:53:13 by msiitone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <signal.h>
 
+int	main(int argc, char **argv)
+{
+	int		pid;
+	char	*str;
+
+	if (argc != 2)
+		return (0);
+	
+}
