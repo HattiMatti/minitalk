@@ -23,7 +23,9 @@ COMPILE = cc $(CFLAGS)
 OBJ = $(SRCS:.c=.o)
 
 
-all : server client
+all : libft server client
+
+libft :
 	$(MAKE) -C $(LIBFTDIR)
 
 server :
@@ -31,6 +33,7 @@ server :
 
 client :
 	$(COMPILE) client.c -o client -L$(LIBFTDIR) -lft
+
 
 clean :
 	rm -f $(OBJ)
