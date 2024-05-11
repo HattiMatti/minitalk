@@ -42,7 +42,7 @@ clean :
 fclean : clean
 	rm -f server
 	rm -f client
-	$(MAKE) -C $(LIBFTDIR) clean
+	$(MAKE) -C $(LIBFTDIR) fclean
 
 re: fclean all
 

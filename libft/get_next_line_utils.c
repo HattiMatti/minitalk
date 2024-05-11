@@ -16,9 +16,7 @@ char	*ft_gnl_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*sub;
 	size_t	i;
-	size_t	j;
 
-	j = 0;
 	i = 0;
 	if (start >= len)
 		return (ft_gnl_strdup(""));
