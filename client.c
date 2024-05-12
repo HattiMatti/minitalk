@@ -13,24 +13,13 @@
 #include "libft/libft.h"
 #include <signal.h>
 
-
-
-int	main(int argc, char **argv)
+void	send_bits(pid_t pid, char *str)
 {
-	pid_t	pid;
-	int		result;
-	int		bit;
-	int		i;
-	char	*str;
+	int	bit;
+	int	i;
+	int	result;
 
-	if (argc != 3)
-	{
-		write(2, "Error\n", 6);
-		return (0);
-	}
 	i = 0;
-	pid = ft_atoi(argv[1]);
-	str = argv[2];
 	while (str[i] != '\0')
 	{
 		bit = 0;
@@ -47,5 +36,22 @@ int	main(int argc, char **argv)
 		}
 		i++;
 	}
+}
+
+
+int	main(int argc, char **argv)
+{
+	pid_t	pid;
+	char	*str;
+
+	if (argc != 3)
+	{
+		write(2, "Error\n", 6);
+		return (0);
+	}
+	pid = ft_atoi(argv[1]);
+	str = argv[2];
+	send_bits(pid, str);
+
 	return (0);
 }
