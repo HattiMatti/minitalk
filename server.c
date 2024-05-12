@@ -20,12 +20,10 @@ void	signal_handler(int signum)
 	if (signum == SIGUSR1)
 	{
 		g_bit = (g_bit << 1) | 1;
-		ft_printf("received 1\n");
 	}
 	if (signum == SIGUSR2)
 	{
 		g_bit = (g_bit << 1);
-		ft_printf("received 0\n");
 	}
 }
 
@@ -52,17 +50,20 @@ int	main(void)
 	unsigned char	character;
 
 	pid = getpid();
-	ft_printf("%d\n", pid);
+	ft_printf("server pid: %d\n", pid);
 	bit_count = 0;
-
-	while (bit_count < 8)
+	while (1)
 	{
-		signal(SIGUSR1, signal_handler);
-		signal(SIGUSR2, signal_handler);
-		pause();
-		bit_count++;
+		while (bit_count < 8)
+		{
+			signal(SIGUSR1, signal_handler);
+			signal(SIGUSR2, signal_handler);
+			pause();
+			bit_count++;
+		}
+		bit_count = 0;
+		character = reverse_bits();
+		ft_printf("%c", character);
 	}
-	character = reverse_bits();
-	ft_printf("Signal received: %c\n", character);
 	return (0);
 }
