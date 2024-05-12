@@ -10,6 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
+NAME = server client
+
 SRCS = server.c client.c
 
 LIBFTDIR = ./libft
@@ -23,17 +25,12 @@ COMPILE = cc $(CFLAGS)
 OBJ = $(SRCS:.c=.o)
 
 
-all : libft server client
+all : $(NAME)
 
-libft :
+$(NAME) : $(OBJ)
 	$(MAKE) -C $(LIBFTDIR)
-
-server :
 	$(COMPILE) server.c -o server -L$(LIBFTDIR) -lft
-
-client :
 	$(COMPILE) client.c -o client -L$(LIBFTDIR) -lft
-
 
 clean :
 	rm -f $(OBJ)

@@ -6,7 +6,7 @@
 /*   By: msiitone <msiitone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 17:04:48 by msiitone          #+#    #+#             */
-/*   Updated: 2024/05/10 17:05:34 by msiitone         ###   ########.fr       */
+/*   Updated: 2024/05/12 17:26:57 by msiitone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ int	main(int argc, char **argv)
 				result = kill(pid, SIGUSR1);
 			else
 				result = kill(pid, SIGUSR2);
+			if (result == -1)
+				ft_printf("send failed");
 			bit++;
+			usleep(300);
 		}
 		i++;
 	}
