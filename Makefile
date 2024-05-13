@@ -10,13 +10,11 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = server client
+NAME = server client libft
 
 SRCS = server.c client.c
 
 LIBFTDIR = ./libft
-
-LIBFT = ./libft/libft.a
 
 CFLAGS = -Wall -Wextra -Werror
 
@@ -28,8 +26,13 @@ OBJ = $(SRCS:.c=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJ)
+
+server :
 	$(MAKE) -C $(LIBFTDIR)
 	$(COMPILE) server.c -o server -L$(LIBFTDIR) -lft
+
+client :
+	$(MAKE) -C $(LIBFTDIR)
 	$(COMPILE) client.c -o client -L$(LIBFTDIR) -lft
 
 clean :
