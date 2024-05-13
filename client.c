@@ -6,7 +6,7 @@
 /*   By: msiitone <msiitone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 17:04:48 by msiitone          #+#    #+#             */
-/*   Updated: 2024/05/12 17:26:57 by msiitone         ###   ########.fr       */
+/*   Updated: 2024/05/13 21:13:56 by msiitone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ void	send_bits(pid_t pid, char *str)
 			else
 				result = kill(pid, SIGUSR2);
 			if (result == -1)
+			{
 				ft_printf("send failed");
+				return ;
+			}
 			bit++;
 			usleep(300);
 		}
@@ -38,6 +41,24 @@ void	send_bits(pid_t pid, char *str)
 	}
 }
 
+void	send_null(pid_t pid)
+{
+	int	check;
+	int	i;
+
+	i = 0;
+	while (i < 8)
+	{
+		check = kill(pid, SIGUSR2);
+		if (check == -1)
+		{
+			ft_printf("send failed");
+			return ;
+		}
+		i++;
+		usleep(300);
+	}
+}
 
 int	main(int argc, char **argv)
 {
@@ -49,9 +70,14 @@ int	main(int argc, char **argv)
 		write(2, "Error\n", 6);
 		return (0);
 	}
+	if (ft_strlen(argv[2]) == 0)
+	{
+		ft_printf("string empty");
+		return (0);
+	}
 	pid = ft_atoi(argv[1]);
 	str = argv[2];
 	send_bits(pid, str);
-
+	send_null(pid);
 	return (0);
 }

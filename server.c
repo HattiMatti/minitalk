@@ -13,7 +13,7 @@
 #include "libft/libft.h"
 #include <signal.h>
 
-unsigned char g_bit;
+unsigned char	g_bit;
 
 void	signal_handler(int signum)
 {
@@ -43,27 +43,58 @@ unsigned char	reverse_bits(void)
 	return (res);
 }
 
-int	main(void)
+char	*str_comp(char *s1, unsigned char character)
+{
+	char	*res;
+	char	str[2];
+	int		len;
+
+	if (!character)
+		return (0);
+	if (!s1)
+		s1 = ft_strdup("");
+	str[0] = character;
+	str[1] = '\0';
+	len = ft_strlen(s1);
+	res = malloc((len + 2) * sizeof(char));
+	if (!res)
+		return (NULL);
+	ft_strlcpy(res, s1, len + 1);
+	ft_strlcat(res, str, len + 2);
+	return (res);
+}
+
+void	handler(void)
 {
 	pid_t			pid;
 	int				bit_count;
 	unsigned char	character;
+	char			*str;
 
 	pid = getpid();
 	ft_printf("server pid: %d\n", pid);
 	bit_count = 0;
+	signal(SIGUSR1, signal_handler);
+	signal(SIGUSR2, signal_handler);
 	while (1)
 	{
-		while (bit_count < 8)
-		{
-			signal(SIGUSR1, signal_handler);
-			signal(SIGUSR2, signal_handler);
+		while (bit_count++ < 8)
 			pause();
-			bit_count++;
-		}
 		bit_count = 0;
 		character = reverse_bits();
-		ft_printf("%c", character);
+		if (character == 0)
+		{
+			ft_printf("%s", str);
+			str = NULL;
+		}
+		if (character != 0)
+			str = str_comp(str, character);
 	}
+	return ;
+}
+
+int	main(void)
+{
+	handler();
 	return (0);
 }
