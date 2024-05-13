@@ -58,18 +58,21 @@ char	*str_comp(char *s1, unsigned char character)
 	len = ft_strlen(s1);
 	res = malloc((len + 2) * sizeof(char));
 	if (!res)
+	{
+		free(s1);
 		return (NULL);
+	}
 	ft_strlcpy(res, s1, len + 1);
 	ft_strlcat(res, str, len + 2);
+	free(s1);
 	return (res);
 }
 
-void	handler(void)
+void	handler(char *str)
 {
 	pid_t			pid;
 	int				bit_count;
 	unsigned char	character;
-	char			*str;
 
 	pid = getpid();
 	ft_printf("server pid: %d\n", pid);
@@ -95,6 +98,9 @@ void	handler(void)
 
 int	main(void)
 {
-	handler();
+	char	*str;
+
+	str = NULL;
+	handler(str);
 	return (0);
 }
