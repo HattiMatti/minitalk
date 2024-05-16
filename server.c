@@ -88,6 +88,7 @@ void	handler(char *str)
 		if (character == 0)
 		{
 			ft_printf("%s", str);
+			free(str);
 			str = NULL;
 		}
 		if (character != 0)

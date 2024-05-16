@@ -6,7 +6,7 @@
 /*   By: msiitone <msiitone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 17:04:48 by msiitone          #+#    #+#             */
-/*   Updated: 2024/05/13 21:13:56 by msiitone         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:23:18 by msiitone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	send_bits(pid_t pid, char *str)
 				return ;
 			}
 			bit++;
-			usleep(300);
+			usleep(600);
 		}
 		i++;
 	}
@@ -52,7 +52,6 @@ void	send_null(pid_t pid)
 		check = kill(pid, SIGUSR2);
 		if (check == -1)
 		{
-			ft_printf("send failed");
 			return ;
 		}
 		i++;
