@@ -6,7 +6,7 @@
 #    By: msiitone <msiitone@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/07 17:05:11 by msiitone          #+#    #+#              #
-#    Updated: 2024/05/07 18:37:54 by msiitone         ###   ########.fr        #
+#    Updated: 2024/05/16 15:48:16 by msiitone         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,11 +29,11 @@ $(NAME) : $(OBJ)
 
 server :
 	$(MAKE) -C $(LIBFTDIR)
-	$(COMPILE) server.c -o server -L$(LIBFTDIR) -lft
+	$(COMPILE) server.o -o server -L$(LIBFTDIR) -lft
 
 client :
 	$(MAKE) -C $(LIBFTDIR)
-	$(COMPILE) client.c -o client -L$(LIBFTDIR) -lft
+	$(COMPILE) client.o -o client -L$(LIBFTDIR) -lft
 
 clean :
 	rm -f $(OBJ)
